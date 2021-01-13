@@ -1,8 +1,9 @@
 import { v4 } from "uuid";
 
 export class IdGenerator{
-
-    generate(): string{
+    async generate(): Promise<string>{
         return v4();
-    }
-}
+    };
+};
+
+export const idGenerator = new IdGenerator();

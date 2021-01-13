@@ -11,7 +11,7 @@
     "api",
     "labook"
   ],
-  "author": "João Alves",
+  "author": "Alice Souza",
   "license": "ISC",
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",

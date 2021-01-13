@@ -1,11 +1,8 @@
 import knex from "knex";
-import Knex   from "knex";
-
+import Knex from "knex";
 
 export abstract class BaseDatabase {
-
     private static connection: Knex | null = null;
-
     protected getConnection(): Knex{
         if(!BaseDatabase.connection){
             BaseDatabase.connection = knex({
@@ -18,15 +15,14 @@ export abstract class BaseDatabase {
                   database: process.env.DB_DATABASE_NAME,
                 },
               });        
-        }
-
+        };
         return BaseDatabase.connection;
-    }
+    };
 
     public static async destroyConnection(): Promise<void>{
         if(BaseDatabase.connection){
             await BaseDatabase.connection.destroy();
             BaseDatabase.connection = null;
-        }
-    }
-}
+        };
+    };
+};
