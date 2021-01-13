@@ -24,12 +24,15 @@ class UserBusiness {
 
     async getUserByEmail(user: LoginInputDTO) {
         const userFromDB = await userDatabase.getUserByEmail(user.email);
+        if (!userFromDB) {
+            throw new Error ("Invalid e-mail");
+        };
         const hashCompare = await hashManager.compare(
             user.password, 
             userFromDB.getPassword()
         );
         if (!hashCompare) {
-            throw new Error("Invalid!");
+            throw new Error("Invalid password");
         };
         const accessToken = authenticator.generateToken({ 
             id: userFromDB.getId(), 
