@@ -1,5 +1,5 @@
 import { bandDatabase } from "../data/BandDatabase";
-import { BandInputDTO } from "../model/Band";
+import { Band, BandInputDTO } from "../model/Band";
 import { idGenerator } from "../services/IdGenerator";
 import { authenticator } from "../services/Authenticator";
 import { UserRole } from "../model/User";
@@ -22,6 +22,13 @@ class BandBusiness {
       input.mainGenre,
       input.responsible
     );
+  };
+
+  async getBandDetailsByIdOrName(input: string): Promise<Band> {
+    if (!input) {
+      throw new InvalidInputError("Invalid input!");
+    };
+    return bandDatabase.getBandDetailsByIdOrName(input);
   };
 };
 

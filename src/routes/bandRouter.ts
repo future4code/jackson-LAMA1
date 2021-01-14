@@ -4,3 +4,4 @@ import { bandController } from "../controller/BandController";
 export const bandRouter = express.Router();
 
 bandRouter.put("/create", bandController.createBand);
+bandRouter.get("/details", bandController.getBandDetailsByIdOrName);
