@@ -33,8 +33,9 @@ class BandController {
       res.status(error.customErrorCode || 400).send({
         message: error.message
       });
-    }
-    await BaseDatabase.destroyConnection();
+    } finally {
+      await BaseDatabase.destroyConnection();
+    };
   };
 };
 

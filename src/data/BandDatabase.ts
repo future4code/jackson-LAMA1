@@ -1,10 +1,10 @@
 import { NotFoundError } from "../error/NotFoundError";
 import { Band } from "../model/Band";
-import { idGenerator } from "../services/IdGenerator";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class BandDatabase extends BaseDatabase {
   private static TABLE_NAME = "LAMA_BANDAS";
+
   async createBand(
     id: string,
     name: string,
@@ -35,7 +35,7 @@ export class BandDatabase extends BaseDatabase {
       throw new NotFoundError(`Unable to found Band with input: ${input}`);
     };
     return Band.toBand(band[0]);
-  }
+  };
 };
 
 export const bandDatabase = new BandDatabase();

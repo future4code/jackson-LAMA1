@@ -6,6 +6,7 @@ export class User {
         private password: string,
         private role: UserRole
     ) { };
+
     getId() {
         return this.id;
     };
@@ -36,6 +37,7 @@ export class User {
     setRole(role: UserRole) {
         this.role = role;
     };
+
     static stringToUserRole(input: string): UserRole {
         switch (input) {
             case "NORMAL":
@@ -46,6 +48,7 @@ export class User {
                 throw new Error("Invalid user role");
         };
     };
+
     static toUserModel(user: any): User {
         return new User(
             user.id,
