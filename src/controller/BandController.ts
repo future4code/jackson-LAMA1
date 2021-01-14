@@ -23,6 +23,19 @@ class BandController {
       await BaseDatabase.destroyConnection();
     };
   };
+
+  async getBandDetailsByIdOrName(req: Request, res: Response) {
+    try {
+      const input = (req.query.id ?? req.query.name) as string;
+      const band = await bandBusiness.getBandDetailsByIdOrName(input);
+      res.status(200).send(band);
+    } catch (error) {
+      res.status(error.customErrorCode || 400).send({
+        message: error.message
+      });
+    }
+    await BaseDatabase.destroyConnection();
+  };
 };
 
 export const bandController = new BandController();
