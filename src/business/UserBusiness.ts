@@ -9,15 +9,15 @@ class UserBusiness {
         const id = await idGenerator.generate();
         const hashPassword = await hashManager.hash(user.password);
         await userDatabase.createUser(
-            id, 
-            user.email, 
-            user.name, 
-            hashPassword, 
+            id,
+            user.email,
+            user.name,
+            hashPassword,
             user.role
         );
-        const accessToken = authenticator.generateToken({ 
-            id, 
-            role: user.role 
+        const accessToken = authenticator.generateToken({
+            id,
+            role: user.role
         });
         return accessToken;
     };
@@ -25,18 +25,18 @@ class UserBusiness {
     async getUserByEmail(user: LoginInputDTO) {
         const userFromDB = await userDatabase.getUserByEmail(user.email);
         if (!userFromDB) {
-            throw new Error ("Invalid e-mail");
+            throw new Error("Invalid e-mail");
         };
         const hashCompare = await hashManager.compare(
-            user.password, 
+            user.password,
             userFromDB.getPassword()
         );
         if (!hashCompare) {
             throw new Error("Invalid password");
         };
-        const accessToken = authenticator.generateToken({ 
-            id: userFromDB.getId(), 
-            role: userFromDB.getRole() 
+        const accessToken = authenticator.generateToken({
+            id: userFromDB.getId(),
+            role: userFromDB.getRole()
         });
         return accessToken;
     };

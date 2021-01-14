@@ -26,18 +26,18 @@ export class Band {
   public setResponsible(newResponsible: string): void {
     this.responsible = newResponsible;
   };
-  public static toBand(data: any): Band  {
+  public static toBand(data: any): Band {
     return new Band(
-        data.id,
-        data.name,
-        data.mainGenre || data.main_genre || data.music_genre || data.musicGenre,
-        data.responsible
+      data.id,
+      data.name,
+      data.mainGenre || data.main_genre || data.music_genre || data.musicGenre,
+      data.responsible
     );
   };
 };
 
 export interface BandInputDTO {
- name: string,
+  name: string,
   mainGenre: string,
   responsible: string
 }
