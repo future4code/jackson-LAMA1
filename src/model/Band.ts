@@ -5,6 +5,7 @@ export class Band {
     private mainGenre: string,
     private responsible: string
   ) { };
+
   public getId(): string {
     return this.id;
   };
@@ -26,13 +27,14 @@ export class Band {
   public setResponsible(newResponsible: string): void {
     this.responsible = newResponsible;
   };
+
   public static toBand(data: any): Band {
-    return new Band(
+    return (data && new Band(
       data.id,
       data.name,
       data.mainGenre || data.main_genre || data.music_genre || data.musicGenre,
       data.responsible
-    );
+    ));
   };
 };
 

@@ -3,6 +3,7 @@ import { User } from "../model/User";
 
 class UserDatabase extends BaseDatabase {
   private static TABLE_NAME = "LAMA_USUÁRIOS";
+
   public async createUser(
     id: string,
     email: string,
